@@ -1,0 +1,751 @@
+```html
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CyberNews — Gaming Portal</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            transition: background-color .3s, color .3s;
+        }
+
+        .hero {
+            min-height: 600px;
+            background:
+                radial-gradient(circle at 80% 30%, rgba(13, 110, 253, .25), transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(111, 66, 193, .2), transparent 35%),
+                var(--bs-body-bg);
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(rgba(13, 110, 253, .06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 110, 253, .06) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass {
+            background: var(--bs-tertiary-bg);
+            border: 1px solid var(--bs-border-color);
+            backdrop-filter: blur(12px);
+        }
+
+        .news-card {
+            transition: transform .25s, box-shadow .25s;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,.2) !important;
+        }
+
+        .news-card img {
+            transition: transform .4s;
+        }
+
+        .news-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .game-card {
+            transition: transform .25s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .neon-text {
+            text-shadow:
+                0 0 10px rgba(13,110,253,.7),
+                0 0 30px rgba(13,110,253,.4);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .hero-icon {
+            font-size: 10rem;
+            filter: drop-shadow(0 0 35px rgba(13,110,253,.6));
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom sticky-top">
+    <div class="container py-2">
+
+        <a class="navbar-brand fw-bold fs-4" href="#">
+            <span class="text-primary">CYBER</span>NEWS
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Відкрити меню"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#news">
+                        Новини
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#games">
+                        Ігри
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">
+                        Про нас
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+
+                    <div class="form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="themeSwitch"
+                            checked
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="themeSwitch"
+                            id="themeLabel"
+                        >
+                            🌙
+                        </label>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero hero-grid d-flex align-items-center">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-12 col-lg-7">
+
+                <span class="badge text-bg-primary px-3 py-2 mb-3">
+                    ⚡ GAMING NEWS 24/7
+                </span>
+
+                <h1 class="display-2 fw-bold mb-4">
+                    Світ ігор.
+                    <br>
+                    <span class="text-primary neon-text">
+                        Без фільтрів.
+                    </span>
+                </h1>
+
+                <p class="lead text-body-secondary mb-4 fs-4">
+                    Новини, релізи, огляди та все, що відбувається
+                    у світі відеоігор.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    <a
+                        href="#news"
+                        class="btn btn-primary btn-lg px-4"
+                    >
+                        🔥 Дивитися новини
+                    </a>
+
+                    <a
+                        href="#games"
+                        class="btn btn-outline-primary btn-lg px-4"
+                    >
+                        🎮 Ігри
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+
+                <div class="glass rounded-5 p-5 text-center">
+
+                    <div class="hero-icon">
+                        🎮
+                    </div>
+
+                    <div class="badge text-bg-primary px-3 py-2">
+                        PLAYER ONLINE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- СТАТИСТИКА -->
+
+        <div class="row g-3 mt-5">
+
+            <div class="col-12 col-md-4">
+
+                <div class="glass rounded-4 p-3 text-center">
+
+                    <div class="stat-number text-primary">
+                        24/7
+                    </div>
+
+                    <small class="text-body-secondary">
+                        Свіжі новини
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-md-4">
+
+                <div class="glass rounded-4 p-3 text-center">
+
+                    <div class="stat-number text-info">
+                        500+
+                    </div>
+
+                    <small class="text-body-secondary">
+                        Ігор у базі
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-md-4">
+
+                <div class="glass rounded-4 p-3 text-center">
+
+                    <div class="stat-number text-warning">
+                        10K+
+                    </div>
+
+                    <small class="text-body-secondary">
+                        Геймерів
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- NEWS -->
+
+<section id="news" class="container py-5">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+
+        <div>
+
+            <span class="text-primary fw-bold">
+                LATEST
+            </span>
+
+            <h2 class="fw-bold mb-0">
+                🔥 Гарячі новини
+            </h2>
+
+        </div>
+
+        <button class="btn btn-outline-primary">
+            Усі новини →
+        </button>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- ГОЛОВНА -->
+
+        <div class="col-12 col-lg-6">
+
+            <div class="card news-card h-100 border-0 shadow">
+
+                <div class="overflow-hidden">
+
+                    <img
+                        src="https://picsum.photos/900/550?random=1"
+                        class="card-img-top"
+                        alt="Головна новина"
+                    >
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <span class="badge text-bg-danger mb-3">
+                        🔴 BREAKING
+                    </span>
+
+                    <h3 class="card-title fw-bold">
+                        Нове покоління ігор вже близько
+                    </h3>
+
+                    <p class="card-text text-body-secondary">
+                        Розробники представили масштабний проєкт,
+                        який може повністю змінити сучасну індустрію
+                        відеоігор.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Читати новину →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- НОВИНА -->
+
+        <div class="col-12 col-md-6 col-lg-3">
+
+            <div class="card news-card h-100 border-0 shadow">
+
+                <div class="overflow-hidden">
+
+                    <img
+                        src="https://picsum.photos/600/400?random=2"
+                        class="card-img-top"
+                        alt="Оновлення"
+                    >
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <span class="badge text-bg-success">
+                        UPDATE
+                    </span>
+
+                    <h5 class="card-title fw-bold mt-3">
+                        Велике оновлення вже доступне
+                    </h5>
+
+                    <p class="card-text text-body-secondary">
+                        Нові карти, персонажі та безліч
+                        виправлень.
+                    </p>
+
+                    <a href="#" class="link-primary text-decoration-none">
+                        Детальніше →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- НОВИНА -->
+
+        <div class="col-12 col-md-6 col-lg-3">
+
+            <div class="card news-card h-100 border-0 shadow">
+
+                <div class="overflow-hidden">
+
+                    <img
+                        src="https://picsum.photos/600/400?random=3"
+                        class="card-img-top"
+                        alt="Ігри року"
+                    >
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <span class="badge text-bg-warning">
+                        TOP
+                    </span>
+
+                    <h5 class="card-title fw-bold mt-3">
+                        Найочікуваніші ігри року
+                    </h5>
+
+                    <p class="card-text text-body-secondary">
+                        Проєкти, на які геймери чекають найбільше.
+                    </p>
+
+                    <a href="#" class="link-primary text-decoration-none">
+                        Детальніше →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GAMES -->
+
+<section id="games" class="bg-body-tertiary py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                EXPLORE
+            </span>
+
+            <h2 class="display-5 fw-bold">
+                🎮 Популярні жанри
+            </h2>
+
+            <p class="text-body-secondary">
+                Знайди гру під свій стиль
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card game-card h-100 border-0 shadow">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-2 mb-3">
+                            ⚔️
+                        </div>
+
+                        <h3 class="fw-bold">
+                            ACTION
+                        </h3>
+
+                        <p class="text-body-secondary">
+                            Шалені битви, вибухи та максимальна
+                            динаміка.
+                        </p>
+
+                        <button class="btn btn-outline-primary">
+                            Переглянути
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card game-card h-100 border-0 shadow">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-2 mb-3">
+                            🏎️
+                        </div>
+
+                        <h3 class="fw-bold">
+                            RACING
+                        </h3>
+
+                        <p class="text-body-secondary">
+                            Швидкість, автомобілі та боротьба
+                            за перше місце.
+                        </p>
+
+                        <button class="btn btn-outline-primary">
+                            Переглянути
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4">
+
+                <div class="card game-card h-100 border-0 shadow">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-2 mb-3">
+                            🧙
+                        </div>
+
+                        <h3 class="fw-bold">
+                            RPG
+                        </h3>
+
+                        <p class="text-body-secondary">
+                            Величезні світи, персонажі та історії,
+                            які запам'ятовуються.
+                        </p>
+
+                        <button class="btn btn-outline-primary">
+                            Переглянути
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="container py-5">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-12 col-lg-6">
+
+            <span class="text-primary fw-bold">
+                ABOUT US
+            </span>
+
+            <h2 class="display-6 fw-bold mt-2">
+                Ми живемо іграми.
+            </h2>
+
+            <p class="lead text-body-secondary">
+                CyberNews — місце для тих, хто хоче бути
+                в курсі всього, що відбувається у світі геймінгу.
+            </p>
+
+            <div class="row g-3 mt-3">
+
+                <div class="col-12 col-sm-6">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            ⚡ Швидко
+                        </h5>
+
+                        <p class="text-body-secondary mb-0">
+                            Новини без зайвого очікування.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-12 col-sm-6">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            🎯 По суті
+                        </h5>
+
+                        <p class="text-body-secondary mb-0">
+                            Тільки важлива інформація.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-12 col-lg-6">
+
+            <div class="card border-0 shadow-lg">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <span class="badge text-bg-primary mb-3">
+                        JOIN US
+                    </span>
+
+                    <h3 class="fw-bold">
+                        Не пропускай головне 🚀
+                    </h3>
+
+                    <p class="text-body-secondary">
+                        Слідкуй за CyberNews та будь першим,
+                        хто дізнається про нові релізи,
+                        оновлення та gaming-події.
+                    </p>
+
+                    <button class="btn btn-primary btn-lg w-100">
+                        Приєднатися
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="bg-dark text-white py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-12 col-md-6">
+
+                <h4 class="fw-bold">
+                    <span class="text-primary">CYBER</span>NEWS
+                </h4>
+
+                <p class="text-white-50 mb-0">
+                    Gaming-портал нового покоління.
+                </p>
+
+            </div>
+
+
+            <div class="col-12 col-md-6 text-md-end">
+
+                <p class="text-white-50 mb-1">
+                    Створено для справжніх геймерів 🎮
+                </p>
+
+                <small class="text-white-50">
+                    © 2026 CyberNews
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+    const themeSwitch = document.getElementById("themeSwitch");
+    const themeLabel = document.getElementById("themeLabel");
+
+    function setTheme(theme) {
+
+        document.body.setAttribute("data-bs-theme", theme);
+
+        if (theme === "dark") {
+            themeSwitch.checked = true;
+            themeLabel.textContent = "🌙";
+        } else {
+            themeSwitch.checked = false;
+            themeLabel.textContent = "☀️";
+        }
+
+        localStorage.setItem("cybernews-theme", theme);
+    }
+
+
+    const savedTheme = localStorage.getItem("cybernews-theme");
+
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        setTheme("dark");
+    }
+
+
+    themeSwitch.addEventListener("change", function () {
+
+        if (this.checked) {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
+```
